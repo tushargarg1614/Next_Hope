@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/universal.css">
+    <script>
+      let mymodule= angular.module("mdl",[]);
+     let mycontroller=mymodule.controller("cntrlr",function($scope,$http){
+      let s=$scope;
+      
+      s.city=[];
+      s.title=[];
+      s.job=[];
+      s.filter=function(){
+        // alert("entered");
+          
+          let url="/fetchCity";
+          $http.get(url).then(success,fail);
+          function success(response){
+                  // alert(JSON.stringify(response.data));
+                
+                  s.city=response.data;
+              }
+              function fail(err){
+                  alert(err.data);
+              }
+
+              let url2="/fetchTitle";
+          $http.get(url2).then(success2,fail2);
+          function success2(response){
+            // alert(JSON.stringify(response.data));
+                  s.title=response.data;
+              }
+              function fail2(err){
+                  alert(err.data);
+              }
+            } 
+            s.ttl="";
+            s.showJob=function(){
+              s.ttl="availiable jobs";
+              let url=`/showJob?city=${s.selcity}&title=${s.seltitle}`;
+              $http.get(url).then(shsucc,shfail);
+              function shsucc(response){
+                // alert(JSON.stringify(response.data));
+                s.job=response.data;
+              }
+              function shfail(err){
+                alert(JSON.stringify(err.data))
+              }
+            }
+          s.selobj=[];
+            s.showdetails=function(index){
+             
+                 s.selobj=s.job[index];
+            }
+  }
+     
+     )
+     </script>
+  </head>
+  <body ng-app="mdl" ng-controller="cntrlr" ng-init="filter()">
+    <nav class="navbar  mb-2">
+      <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">
+              www.NextHope.org
+          </a>
+      </div>
+  </nav>
+
+    <div class="container  mb-5">
+        <!-- left box -->
+        <div class="row main-box col-md-12  my-5 ">
+            <div class="left col-md-3  h-100 pt-5">
+              <form action="">
+                <label for="exampleFormControlInput1" class="form-label pt-3">city</label>
+                <select class="form-select" aria-label="Default select example" ng-model="selcity">
+                  <option>all</option>
+                  <!-- <option>Open this select menu</option> -->
+                  <option ng-repeat="obj in city" value="{{obj.city}}">{{obj.city}}</option>
+                </select>
+
+                <label for="exampleFormControlInput1" class="form-label pt-3">job title</label>
+                <select class="form-select" aria-label="Default select example" ng-model="seltitle">
+                  <!-- <option selected>Open this select menu</option> -->
+                  <option>all</option>
+                  <option ng-repeat="job in title" value="{{job.jobtitle}}">{{job.jobtitle}}</option>
+                </select>
+
+                <label for="edu" class="form-label pt-3">education</label>
+                <p>
+                <input type="radio" name="edu" id="edu">yes
+                <input type="radio" name="edu" id="edu">no
+                </p>
+                <input type="button" class="btn btn-dark w-100 " value="search" ng-click="showJob()">
+              </form>
+                
+            </div>
+
+            <!-- right box -->
+             
+            <div class="right col-md-9 right  ">
+              <h4 class="text-center mt-1 pt-1">{{ttl}}</h4>
+              <div class="rightsub col-md-12 container overflow-y-scroll ">
+
+                
+                <div class="row">
+                <div class="col-md-3" ng-repeat="obj in job">
+                  <div class="card mt-3 p-2 " >
+                    <img src="https://cdn-icons-png.freepik.com/256/10485/10485056.png?uid=R184726863&ga=GA1.1.2084985190.1739466975&semt=ais_hybrid" class="card-img-top h-50" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title fs-5">{{obj.jobtitle}}</h5>
+                      <p class="card-text fs-6">{{obj.city}}</p>
+                      <a href="#" class="btn btn-primary " data-bs-toggle="modal" ng-click="showdetails($index)" data-bs-target="#exampleModal">more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+              <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">job description</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="col-md-12">
+          <tr>
+          <td>role :{{selobj.jobtitle}}</td>
+        </tr>
+
+        <tr>
+          <td>type :{{selobj.jobtype}}</td>
+        </tr>
+        <tr>
+          <td>city : {{selobj.city}}</td>
+        </tr>
+        <tr>
+          <td>address : {{selobj.address}}</td>
+        </tr>
+        <tr>
+          <td>education required :{{selobj.edu}}</td>
+        </tr>
+        <tr>
+          <td>published by :{{selobj.cid}}</td>
+        </tr>
+        <tr>
+          <td>contact :{{selobj.contact}}</td>
+        </tr>
+        </table>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+              
+            </div>
+        </div>
+    </div>  
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+  
+    
+    <style>
+      .navbar{
+        background:  #0d8974f4;
+      }
+      body{
+        background-color:rgb(255, 237, 215);
+        text-transform: capitalize;
+      }
+      .btn{
+         background-color: goldenrod;
+      }
+      .title{
+         color:#0d8974f4 ;
+      }
+      
+      .rightsub{
+        height:90%;
+      }
+      .main-box{
+        height:90vh;
+        border: 1px solid black;
+    }
+    .left{
+      background:#0a6f5ef4;
+      color:white;
+    }
+    .right{
+      background: #f4f2f2;
+      max-height:90vh;
+      
+    }
+    th,td{
+        /* border-bottom: 1px solid black;padding: 10px 0px 10px 0px; */margin-top: 10px;
+
+    }
+   
+     
+      
+      
+ </style>
+    
+  
+</html>

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
+
+  body{
+    text-transform: capitalize;
+    font-family: 'Exo 2', sans-serif;
+  }
+  .carousel-item img{
+   
+    height: 95vh;
+    object-fit:fill;
+  }
+  .navbar{
+    background:  #0d8974;;
+    
+  }
+  .navbar-brand{
+    color:gold;
+  }
+  .services{
+    background-color:rgb(255, 237, 215);
+  }
+  h2{
+    color: #0d8974;
+  }
+  .card{
+    border-radius: 30px;overflow: hidden;box-shadow: 5px 5px 10px gray;height: 330px;margin-top: 10px;
+    padding:0px 0px 10px 0px;
+    
+  }
+  .card-text{
+    font-size: 12px; margin-top: 10px;color:rgba(63, 62, 62, 0.779);margin-top: 30px;text-align: center;
+  }
+  .card-title{
+    color: #0d8974;
+  }
+  .card-img-top{
+    height:80px;width:80px;margin-top: 10px;
+  }
+  .working{
+    background-color:whitesmoke;
+  }
+  .working .card{
+    height:200px;
+  }
+  .working .card-text{
+    font-size: medium; margin-top: 10px;
+  }
+  hr{
+    height:3px;width: 60px; background-color: rgb(234, 90, 0);border: none;display: block;overflow: hidden;margin:10px auto;border-radius: 10px;
+  }
+  /* .navbar{
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
+  } */
+  .nav-link:hover{
+    color:goldenrod !important;
+  }
+  .nav-link:active{
+    color:black !important;
+  }
+  
+  .card{
+    border: 1px solid goldenrod;
+  }
+  .creators{
+    background-color:rgb(255, 237, 215);
+  }
+  .creators .card{
+    margin-top: 20px;
+  }
+  .creator-img{
+    height: 150px;width: 150px;border: 1px solid goldenrod;margin-top: 30px;
+  }
+  .reach-us{
+    background-color:rgb(255, 237, 215); ;
+  }
+  .footer{
+    background:  #0d8974;height: auto;
+  
+  }
+  .nav-btn{
+    background-color: gold;
+  }
+  .carousel-caption{
+    background-color: #0d89749a;
+    color:#fff;
+    margin-bottom: 50px;
+  }
+  .btn{
+    background:#0d89749a;
+ }
+  

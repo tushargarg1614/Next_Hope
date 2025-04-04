@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
+
+  body{
+    text-transform: capitalize;
+    font-family: 'Exo 2', sans-serif;
+    background-color:rgb(255, 237, 215);
+  }
+  .navbar{
+    background:  #0d8974;;
+    
+  }
+  .navbar-brand{
+    color:gold;
+  }
+  h2{
+    color: #0d8974;
+  }
+  .card{
+    border-radius: 30px;box-shadow: 5px 5px 10px gray; transition: transform 0.3s ease ;margin-top: 40px;
+    
+  }
+  .card:hover {
+    transform: scale(1.05); /* Zoom in the card slightly */
+  }
+  
+  .card:active {
+    transform: scale(1.05); /* Slight zoom effect when tapping */
+  }
+  hr{
+    height:3px;width: 60px; background-color: rgb(234, 90, 0);border: none;display: block;overflow: hidden;margin:10px auto;border-radius: 10px;
+  }
+  .btn{
+    background:#0d8974;
+    color:white;
+ }
+ 
